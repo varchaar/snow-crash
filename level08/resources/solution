@@ -1,0 +1,7 @@
+On getting on level08 you can see 2 files
+level08 with suid of flag08 and token with rw permission only for flag08 so I thought maybe the flag is in there. Then when you run ./level08 it shows :
+./level08 [file to read] so it reads a file with the permissions of flag08 by using ltrace with a parameter (like token for instance) and you can see
+strstr("token", "token")
+
+So it checks in hard if the word token is present in the path given in parameter
+So I created a soft link to token named flag and used ./level08 flag and boum got the flag

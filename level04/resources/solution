@@ -1,0 +1,4 @@
+On getting connected you see a file named level04.pl and by searching for other occurences of level04 I found a file level04.pl in /var/www/
+
+In the file there is a line with localhost:4747 so I tested on my browser
+with the param x=test and it displayed test, then i used x=$(ls) and it displayed level04.pl so I used x=$(getflag) and I got the flag

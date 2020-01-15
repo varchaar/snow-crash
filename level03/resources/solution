@@ -1,0 +1,1 @@
+I used hexdump -C to see this string : /usr/bin/env echo Exploit me and I thought, maybe I can use a different env var to change the "default" echo command so I created an echo file in /tmp like the one in the folder and use the command export PATH=/tmp:$PATH just before executing ./level03

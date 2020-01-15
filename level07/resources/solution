@@ -1,0 +1,1 @@
+On arriving on level07, you can see a binary named level07, on executing it it output level07, I used ltrace ./level07 and saw getenv("LOGNAME") = "level07" so I took a look on the env vars (LOGNAME = "level07") so I called level07 and changing the value of LOGNAME and finally used LOGNAME = "&& getflag" and got the flag
