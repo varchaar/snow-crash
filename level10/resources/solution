@@ -1,0 +1,2 @@
+In level10 you can see that the binary use sockets to send a file to the host given in parameter,
+but it checks before if the file can be accessed by the user using the program, so you need to exploit access() syscall race condition by using a soft link to a "good" file and just after launching the program changing the soft link to token file (see script.sh)

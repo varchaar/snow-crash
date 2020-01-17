@@ -1,0 +1,1 @@
+In level09 you can see a file token with some garbage in it and a binary executable level09, so after some digging I understood that level09 take the first param and write it with str[i] + i so I tested to revert this process on the token content and got the flag
