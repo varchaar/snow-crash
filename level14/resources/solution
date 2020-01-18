@@ -1,0 +1,41 @@
+For this challenge there is no file to exploit, after some search I decided to try to reverse /bin/getflag
+
+After some digging I understood that it uses the same inner working as level13 binary, so same exploit (kinda) with a twist: On reversing with gdb the binary detect that you're using gdb and output "You should not reverse this" It is using ptrace for it so, we need to "tamper" the output of ptrace to bypass this protection:
+
+(gdb) disass
+Dump of assembler code for function main:
+   0x08048946 <+0>:	push   %ebp
+   0x08048947 <+1>:	mov    %esp,%ebp
+   0x08048949 <+3>:	push   %ebx
+=> 0x0804894a <+4>:	and    $0xfffffff0,%esp
+   0x0804894d <+7>:	sub    $0x120,%esp
+   0x08048953 <+13>:	mov    %gs:0x14,%eax
+   0x08048959 <+19>:	mov    %eax,0x11c(%esp)
+   0x08048960 <+26>:	xor    %eax,%eax
+   0x08048962 <+28>:	movl   $0x0,0x10(%esp)
+   0x0804896a <+36>:	movl   $0x0,0xc(%esp)
+   0x08048972 <+44>:	movl   $0x1,0x8(%esp)
+   0x0804897a <+52>:	movl   $0x0,0x4(%esp)
+   0x08048982 <+60>:	movl   $0x0,(%esp)
+   0x08048989 <+67>:	call   0x8048540 <ptrace@plt>
+   0x0804898e <+72>:	test   %eax,%eax 		<= I need to place a breakpoint here
+   0x08048990 <+74>:	jns    0x80489a8 <main+98>
+   0x08048992 <+76>:	movl   $0x8048fa8,(%esp)
+   0x08048999 <+83>:	call   0x80484e0 <puts@plt>
+   0x0804899e <+88>:	mov    $0x1,%eax
+   0x080489a3 <+93>:	jmp    0x8048eb2 <main+1388>
+   0x080489a8 <+98>:	movl   $0x8048fc4,(%esp)
+
+(gdb) b *main+72
+(gdb) continue
+
+Now I need to tamper the return value of ptrace and place a breakpoint after getuid and before every comparison of uid with awaited uid:
+
+(gdb) p $eax=0
+(gdb) b *main+452
+(gdb) continue
+(gdb) p $eax=3014
+(gdb) continue
+Single stepping until exit from function main,
+which has no line number information.
+Check flag.Here is your token : 7QiHafiNa3HVozsaXkawuYrTstxbpABHD8CPnHJ

