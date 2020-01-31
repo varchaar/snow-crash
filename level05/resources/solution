@@ -2,7 +2,7 @@ When I first connected to level05 I had a message saying I had mail, so I looked
 
 */2 * * * * su -c "sh /usr/sbin/openarenaserver" - flag05
 
-It's a crontab so I looked in this file
+It's a crontab so I looked in this file /usr/sbin/openarenaserver
 #!/bin/sh
 
 for i in /opt/openarenaserver/* ; do
@@ -13,4 +13,6 @@ done
 So i created a script in /opt/openarenaserver
 #!/bin/sh
 
-getflag > /tmp/flag and then cat /tmp/flag
+getflag > /tmp/flag
+
+and then cat /tmp/flag

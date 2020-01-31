@@ -32,7 +32,7 @@ Dump of assembler code for function main:
 Now I need to tamper the return value of ptrace and place a breakpoint after getuid and before every comparison of uid with awaited uid:
 
 (gdb) p $eax=0
-(gdb) b *main+452
+(gdb) b *main+444
 (gdb) continue
 (gdb) p $eax=3014
 (gdb) continue

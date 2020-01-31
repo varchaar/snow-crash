@@ -1,2 +1,4 @@
 You can see a script named level12.pl and you can see some filter (every input is put in uppercase and everything after a space is removed. So you need to make an injection whithout lowercase or spaces
-For instance you can put a script in /tmp named /tmp/SCRIPT and inject it in the param like so: /*/SCRIPT
+
+For instance you can put a script in /tmp named /tmp/SCRIPT and inject it in the param like so: 
+$ curl localhost:4646?x=\`/*/SCRIPT\`&y=bbb
